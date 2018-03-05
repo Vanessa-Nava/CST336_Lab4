@@ -1,17 +1,23 @@
 <?php
     $backgroundImage = "./img/sea.jpg";
     
-    if(isset($_GET['keyword']) && !empty($_GET['keyword'])){
+     if(isset($_GET['keyword']) && !empty($_GET['keyword']))
+    {
         $keyword = $_GET['keyword'];
         include 'api/pixabayAPI.php';
-        echo "You searched for ";
-        echo $_GET['keyword'];
+        echo "<h1> You searched for </h1>";
+        echo "<div id = 'word'>";
+        echo  $_GET['keyword'];
+        echo "</div>";
         $imageURLs = getImageURLs($_GET['keyword'], $_GET['layout']);
         $backgroundImage = $imageURLs[array_rand($imageURLs)];
     }
-    else if(isset($_GET['category']) && !empty($_GET['category'])){
-        echo "You searched for ";
-        echo $_GET['category'];
+    else if(isset($_GET['category']) && !empty($_GET['category']))
+    {
+        echo "<h1> You searched for </h1>";
+        echo "<div id = 'word'>";
+            echo  $_GET['category'];
+        echo "</div>";
         include 'api/pixabayAPI.php';
         $imageURLs = getImageURLs($_GET['category'], $_GET['layout']);
         $backgroundImage = $imageURLs[array_rand($imageURLs)];
@@ -19,8 +25,9 @@
     else
     {
         $backgroundImage = "img/sea.jpg";
+            
     }
-    
+        
     
 ?>
 <!DOCTYPE html>
@@ -63,14 +70,13 @@
         
         ?>
         
-        <h1> You searched for </h1>
         
         <div id  = "carousel-example-generic" class = "carousel slide" data-ride = "carousel" style = 'width:400px'>
             <ol class ="carousel-indicators">
                 
             
             <?php
-                for($i = 0; $i < 7; $i++)
+                for($i = 0; $i <7; $i++)
                 {
                     echo "<li data-target ='#carousel-example-generic' data-slide-to='$i'";
                     echo ($i == 0) ? "class ='active'" : "";
@@ -93,6 +99,7 @@
                         echo '</div>';
                         unset($imageURLs[$randomIndex]);
                     }
+            }
                 ?>
             </div>    
            
@@ -107,10 +114,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        <?php
-            } //ends the else statement
-        
-        ?>
+      
         </br></br>
         
         <form>
